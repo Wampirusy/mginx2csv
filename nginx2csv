@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require './lib/options'
 
 options = Options.new
@@ -6,7 +8,7 @@ if options.valid?
   require './lib/converter'
   converter = Converter.new(options)
 
-  converter.convert.last_result
+  converter.convert.last_result.each {|key, val| puts "#{key}: #{val}"}
 else
-  options.errors
+  options.errors.each {|msg| puts msg}
 end

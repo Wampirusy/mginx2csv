@@ -1,8 +1,7 @@
-require './lib/abstract_file'
+class FileReader
 
-class FileReader < AbstractFile
-  def open_file (path)
-    File.new(path, 'r')
+  def initialize path
+    @file = File.new(path, 'r')
   end
   
   def read

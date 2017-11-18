@@ -1,11 +1,18 @@
-require './lib/abstract_file'
+require 'csv'
 
-class FileWriter < AbstractFile
-  def open_file (path)
-    File.new(path, 'w+')
+class FileWriter
+
+  DEFAULT_SEP = ';'
+
+  def initialize (path, options = {})
+    if options[:col_sep].nil?
+      options[:col_sep] = DEFAULT_SEP
+    end
+
+    @file = CSV.open(path, 'w', {:col_sep => options[:col_sep]})
   end
   
   def write data
-    @file.puts data
+    @file << data
   end
 end
